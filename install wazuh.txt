@@ -1,0 +1,11 @@
+#install wazuh 
+
+curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh && sudo bash ./wazuh-install.sh -a
+
+
+#you can find the admin login information in the password.txt file like this:
+ls 
+tar -xvf wazuh-install-files.tar
+cd wazuh-install-files/
+ls
+cat wazuh-password.txt

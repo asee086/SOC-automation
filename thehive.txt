@@ -1,0 +1,102 @@
+#thehive it has 3 requirements before downloading it 
+
+#first java 
+wget -qO- https://apt.corretto.aws/corretto.key | sudo gpg --dearmor -o /usr/share/keyrings/corretto.gpg
+echo "deb [signed-by=/usr/share/keyrings/corretto.gpg] https://apt.corretto.aws stable main" | sudo tee -a /etc/apt/sources.list.d/corretto.sources.list
+sudo apt update
+sudo apt install java-common java-11-amazon-corretto-jdk
+echo JAVA_HOME="/usr/lib/jvm/java-11-amazon-corretto" | sudo tee -a /etc/environment
+export JAVA_HOME="/usr/lib/jvm/java-11-amazon-corretto"
+
+
+#second Cassandra
+
+wget -qO -  https://downloads.apache.org/cassandra/KEYS | sudo gpg --dearmor  -o /usr/share/keyrings/cassandra-archive.gpg
+echo "deb [signed-by=/usr/share/keyrings/cassandra-archive.gpg] https://debian.cassandra.apache.org 40x main" |  sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list 
+sudo apt update
+sudo apt install Cassandra
+
+#after downloading you must modify the file Cassandra.yaml
+
+nano /etc/cassandra/cassandra.yaml
+
+#change the following values:
+#cluster_name= any name you want or you can leave it as it is 
+#listen_address= thehive IP 
+#rpc_address= thehive IP
+#seeds= thehive IP
+#save the file and start Cassandra with 
+sudo systemctl stop cassandra
+
+sudo rm -rf /var/lib/cassandra/*
+
+sudo systemctl start Cassandra
+
+sudo systemctl enable Cassandra
+
+
+#third Elasticsearch
+
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch |  sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+sudo apt-get install apt-transport-https
+echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" |  sudo tee /etc/apt/sources.list.d/elastic-7.x.list 
+sudo apt update
+sudo apt install elasticsearch
+
+#after downloading you must modify the file elasticsearch.yml
+
+nano /etc/elasticsearch/elasticsearch.yml
+
+#change the following values:
+#cluster.name= delete # and write thehive after :
+#node.name: just delete #
+#network.host: delete # and write thehive IP
+#http.port: just delete #
+#cluster.initial_master_nodes: delete node-2 and #
+
+#save the file and start Elasticsearch with:
+ 
+sudo systemctl stop elasticsearch
+sudo rm -rf /var/lib/elasticsearch/*
+sudo systemctl start elasticsearch
+sudo systemctl enable elasticsearch
+
+
+# install thehive
+
+wget -O- https://raw.githubusercontent.com/StrangeBeeCorp/Security/main/PGP%20keys/packages.key | sudo gpg --dearmor -o /usr/share/keyrings/strangebee-archive-keyring.gpg
+echo 'deb [arch=all signed-by=/usr/share/keyrings/strangebee-archive-keyring.gpg] https://deb.strangebee.com thehive-5.4 main' |sudo tee -a /etc/apt/sources.list.d/strangebee.list
+sudo apt-get update
+sudo apt-get install -y thehive
+
+
+ls -la /opt/thp
+
+chown -R thehive:thehive /opt/thp
+
+#after downloading you must modify the file application.conf
+
+nano /etc/thehive/application.conf
+
+#change the following values:
+
+#db.janusgraph hostname = thehive IP
+#cluster-name= same name you wrote in casaandra.yaml
+#index.search hostname = thehive IP
+#application.baseurl="http:// thehive IP:9000"
+
+#save the file and start thehive with:
+
+sudo systemctl start thehive
+sudo systemctl enable thehive
+
+#The default admin user
+Username: admin@thehive.local
+Password: secret
+
+
+#after all that you should make sure that everything is in active state by using these commands 
+
+systemctl status Cassandra.service
+systemctl status elasticsearch.service
+systemctl status thevive 
