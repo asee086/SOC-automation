@@ -32,9 +32,9 @@ ssh root@0.0.0.0
   
  _____________________________________________________________________________________________________________________________
 
-  الان قم بتحميل ال [wazuh] (https://documentation.wazuh.com/current/installation-guide/wazuh-agent/wazuh-agent-package-windows.html) على جهاز ويندوز في virtualbox or vmware
+ الآن قم بتحميل [wazuh](https://documentation.wazuh.com/current/installation-guide/wazuh-agent/wazuh-agent-package-windows.html) على جهاز ويندوز في VirtualBox أو VMware
 
-في هذا الفديو طريقة تعيين الويندوز كـ Wazuh agent  و انشاء تنبيهات ضارة ب استخدام   [mimikatz] (https://github.com/gentilkiwi/mimikatz)
+في هذا الفيديو طريقة تعيين الويندوز كـ Wazuh Agent وإنشاء تنبيهات ضارة باستخدام [mimikatz](https://github.com/gentilkiwi/mimikatz)
 
 https://drive.google.com/file/d/1xwYfbziJ8AYq_1u9Yy6PdV-JQNwrQTBA/view?usp=sharing
 
