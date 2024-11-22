@@ -27,4 +27,15 @@ ssh root@0.0.0.0
 ضع ال IP addres الخاص ب wazuh or thehive بدلا من الصفر سيطلب منك الرقم السري الذي وضعته اثناء انشاء Droplets
 
   بعد الدخول لكي تتمكن من التثبيت والتعديل ستجد جميع أوامر التنزيل مرفقة في الملفات 
+
+
+  
+ _____________________________________________________________________________________________________________________________
+
+  الان قم بتحميل ال [wazuh] (https://documentation.wazuh.com/current/installation-guide/wazuh-agent/wazuh-agent-package-windows.html) على جهاز ويندوز في virtualbox or vmware
+
+في هذا الفديو طريقة تعيين الويندوز كـ Wazuh agent  و انشاء تنبيهات ضارة ب استخدام   [mimikatz] (https://github.com/gentilkiwi/mimikatz)
+
+https://drive.google.com/file/d/1xwYfbziJ8AYq_1u9Yy6PdV-JQNwrQTBA/view?usp=sharing
+
    
